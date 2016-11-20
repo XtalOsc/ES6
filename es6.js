@@ -27,3 +27,34 @@ var divisibleByThreeES5 = arrayOfNumbers.filter(function (ar){
 
 //ES6
 var divisibleByThreeES6 = arrayOfNumbers.filter (ar => ar % 3 == 0);
+
+//***********************************
+
+//using const and let instead of var
+//use const for variables that don't change
+//use let for variables that change
+
+//***********************************
+
+// FOR (LET key OF set)
+
+let mySet = new Set([1,2,2,3,4,4,5]);
+console.dir(mySet); // look under [[Entries]]: Array[5]
+
+for(let val of mySet){
+  console.log(val);
+}
+//*********
+// FOR (LET key IN object)
+let object = {
+  field: 'Financial',
+  languagesUsed: ['.NET', 'Java'],
+  advisors: 50
+}
+
+console.log("keys in object:");
+for(let key in object){
+  console.log(key);  //field
+                     //languagesUsed
+                     //advisors
+}
