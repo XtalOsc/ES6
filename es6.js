@@ -58,3 +58,78 @@ for(let key in object){
                      //languagesUsed
                      //advisors
 }
+
+//***********************************
+// ITERATORS
+
+let numArray = [3,9,7,4];
+
+//find if array or object is iterable
+console.dir(numArray); //look under __proto__ for Symbol.iterator
+
+
+//*********
+
+let myArray2 = [1,2,3]
+let iterator = myArray2[Symbol.iterator]();
+
+//gets each value one by one
+console.log(iterator.next());// {value: 1, done:false}
+console.log(iterator.next());// {value: 2, done:false}
+console.log(iterator.next());// {value: 3, done:false}
+console.log(iterator.next());// {value: undefined, done:true}
+
+//***********************************
+// GENERATORS
+
+function *generator(){
+  yield 1;
+  yield 2;
+  yield 3;
+  yield 4;
+}
+
+let iterator = generator();
+console.log(iterator.next());// {value: 1, done:false}
+console.log(iterator.next());// {value: 2, done:false}
+console.log(iterator.next());// {value: 3, done:false}
+console.log(iterator.next());// {value: 4, done:false}
+console.log(iterator.next());// {value: undefined, done:true}
+
+//*********
+
+function *infinite(){
+  let i = 0;
+  while (true){
+    yield i;
+    i++
+  }
+}
+
+let iterator = infinite();
+
+console.log(iterator.next());// {value: 0, done:false}
+console.log(iterator.next());// {value: 1, done:false}
+console.log(iterator.next());// {value: 2, done:false}
+console.log(iterator.next());// {value: 3, done:false}
+console.log(iterator.next());// {value: 4, done:false}
+console.log(iterator.next());// {value: 5, done:false}
+console.log(iterator.next());// {value: 6, done:false}
+
+//*********
+
+function *firstGenerator(){
+  yield 1;
+  yield* anotherGenerator();
+  yield 3;
+};
+
+function *anotherGenerator(){
+  yield 2;
+}
+
+let iterator = firstGenerator();
+console.log(iterator.next());// {value: 1, done:false}
+console.log(iterator.next());// {value: 2, done:false}
+console.log(iterator.next());// {value: 3, done:false}
+console.log(iterator.next());// {value: undefined, done:true}
